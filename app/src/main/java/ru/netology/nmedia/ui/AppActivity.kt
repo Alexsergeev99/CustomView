@@ -20,6 +20,6 @@ class AppActivity : AppCompatActivity(R.layout.activity_app) {
             )
         }, 100)
 
-        view.startAnimation(AnimationUtils.loadAnimation(this, R.anim.animation))
+//        view.startAnimation(AnimationUtils.loadAnimation(this, R.anim.animation))
     }
 }

@@ -8,11 +8,7 @@ import android.graphics.PointF
 import android.graphics.RectF
 import android.util.AttributeSet
 import android.view.View
-import android.view.animation.AccelerateDecelerateInterpolator
-import android.view.animation.AccelerateInterpolator
-import android.view.animation.CycleInterpolator
 import android.view.animation.LinearInterpolator
-import android.view.animation.OvershootInterpolator
 import androidx.core.content.withStyledAttributes
 import ru.netology.nmedia.R
 import ru.netology.nmedia.util.AndroidUtils
@@ -87,7 +83,7 @@ class StatsView @JvmOverloads constructor(
                 invalidate()
             }
             duration = 3000
-            interpolator = OvershootInterpolator(2f)
+            interpolator = LinearInterpolator()
         }.also {
             it.start()
         }
@@ -115,7 +111,7 @@ class StatsView @JvmOverloads constructor(
         data.forEachIndexed { index, datum ->
             val angle = 360F * datum * smartCounter(data.sum())
             paint.color = colors.getOrNull(index) ?: randomColor()
-            canvas.drawArc(oval, startFrom, angle * progress, false, paint)
+            canvas.drawArc(oval, startFrom + progress * 360F, angle * progress, false, paint)
             startFrom += angle
         }
         paint.color = colors[0]
